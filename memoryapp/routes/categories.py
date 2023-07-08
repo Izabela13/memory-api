@@ -25,3 +25,11 @@ def add_category():  # przekazywanie do repozytorium kategrii. Musimy ją wysła
 @app.route('/categories/<int:category_id>', methods=['GET'])  # "int:category_id" konwersja do typu int
 def category(category_id):  # nazwa musi być identyczna jak z routa
     return jsonify(get_category(category_id))
+
+
+# Metoda usuwająca
+@app.route('/categories/<int:category_id>', methods=['DELETE'])
+def remove_category(category_id):  # oczekujemy ID danej kategorii
+    delete_category(category_id)
+
+    return '', 204

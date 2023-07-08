@@ -12,7 +12,7 @@ categories_list = [
 ]
 
 # Metoda, która będzie nadawała kolejne numery id
-id_categories = 2 # tu trzymamy id
+id_categories = 2  # tu trzymamy id
 
 
 def get_categories():
@@ -40,5 +40,15 @@ def get_category(category_id):  # list comprehenisve - przechodzimy przez listę
     results = [category for category in categories_list if category.category_id == category_id]
     if results:
         return results[0]  # pobierzemy tylko ten jeden element
+    else:
+        raise NotFoundException('Category')
+
+
+# Metoda usuwająca daną kategorię po ID
+def delete_category(category_id):
+    results = [category for category in categories_list if category.category_id == category_id]
+
+    if results:
+        categories_list[:] = [category for category in categories_list if category.category_id != category_id]
     else:
         raise NotFoundException('Category')
