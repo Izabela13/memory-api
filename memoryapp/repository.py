@@ -1,12 +1,13 @@
 """ Plik "repository" to baza danych """
 
-# W klasie stworzymy tablicę, która będzie przechowywać kategorie
-categories_list = [
-    {'category_id': 1,
-     'name': 'Dom'},
+from memoryapp.models import Category
 
-    {'category_id': 2,
-     'name': 'Rodzina'},
+
+# W klasie stworzymy tablicę, która będzie przechowywać kategorie
+# Nigdzie nie ma kontroli błędów - dodajemy konstruktor, do którego przekażemy wartości
+categories_list = [
+    Category(1, 'Dom'),
+    Category(2, 'Rodzina')
 ]
 
 
