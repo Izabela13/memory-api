@@ -71,3 +71,22 @@ def get_cards(category_id):
     cards_results = [card for card in cards_list if card.category_id == category_id]
 
     return cards_results
+
+
+# Metoda dodająca carty
+def create_card(category_id, word, translation):  # 3 parametry
+    categories_results = [category for category in categories_list if category.category_id == category_id]
+    # Czy w repository mamy taką kategorię? Jeśli tak, przechodzimy do tworzenia fiszki o tej kategorii
+    if not categories_results:
+        raise NotFoundException('Category')
+
+    card = Card(__next_card_id(), category_id, word, translation) # jeżeli mamy kategorię, tworzymy instancję obiektu klasy
+    cards_list.append(card)  # chcemy połączyć fiszkę z kategorią i dodać ją do listy
+
+    return card  # zwracamy nowo utworzoną fiszkę (i wracamy do kontrolera z fiszkami)
+
+
+def __next_card_id(): # ta funkcja będzie nam zmieniać id dla fiszki (card)
+    global id_cards
+    id_cards += 1
+    return id_cards
