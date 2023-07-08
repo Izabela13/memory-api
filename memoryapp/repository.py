@@ -1,6 +1,7 @@
 """ Plik "repository" to baza danych """
 
 from memoryapp.models import Category
+from memoryapp.exceptions import NotFoundException
 
 
 # W klasie stworzymy tablicę, która będzie przechowywać kategorie
@@ -35,6 +36,9 @@ def __next_category_id():
 
 # Metoda, która na podstawie "category_id" zwróci jakąś kategorię
 def get_category(category_id):  # list comprehenisve - przechodzimy przez listę
+    # sprawdzamy, czy jakiś "result" został znaleziony
     results = [category for category in categories_list if category.category_id == category_id]
-    # na końcu otrzymamy jednoelementową listę
-    return results[0]  # pobierzemy tylko ten jeden element
+    if results:
+        return results[0]  # pobierzemy tylko ten jeden element
+    else:
+        raise NotFoundException('Category')
