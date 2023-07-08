@@ -20,3 +20,8 @@ def add_category():  # przekazywanie do repozytorium kategrii. Musimy ją wysła
 
     return jsonify(create_category(category_name)), 201  # "category_name" to żądanie
     # ciało odpowiedzi + kod odpowiedzi
+
+
+@app.route('/categories/<int:category_id>', methods=['GET'])  # "int:category_id" konwersja do typu int
+def category(category_id):  # nazwa musi być identyczna jak z routa
+    return jsonify(get_category(category_id))

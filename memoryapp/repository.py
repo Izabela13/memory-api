@@ -31,3 +31,10 @@ def __next_category_id():
     global id_categories # Po dodaniu "global" globalną zmienną możemy modyfikować. Bez tego mamy do czynienia ze zmienną lokalną
     id_categories += 1  # zwiększamy liczbę, którą przechowuje zmienna "id_categories"
     return id_categories  # zwracanie wartości "id_categories".
+
+
+# Metoda, która na podstawie "category_id" zwróci jakąś kategorię
+def get_category(category_id):  # list comprehenisve - przechodzimy przez listę
+    results = [category for category in categories_list if category.category_id == category_id]
+    # na końcu otrzymamy jednoelementową listę
+    return results[0]  # pobierzemy tylko ten jeden element
