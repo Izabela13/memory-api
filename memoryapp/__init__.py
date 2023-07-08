@@ -13,5 +13,4 @@ ZMNIEJSZENIE RESTRYKCJI
 {"origins": "*"}} - obojętnie, z jakiego źródła będzie pochodziło zapytanie, serwer będzie przepuszczał
 """
 
-
-from . import categories
+import memoryapp.routes
