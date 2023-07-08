@@ -1,4 +1,4 @@
-from flask import jsonify  # ta funkcja zamieni listę [] na obiekt/ format JSON
+from flask import jsonify, request  # ta funkcja zamieni listę [] na obiekt/ format JSON
 from memoryapp import app  # instancja klasy Flask
 from memoryapp.repository import *  # import metod z pliku "repository"
 
@@ -11,3 +11,12 @@ def categories():
 """
 JSON zamienia obiekty pythonowe na format tekstowy
 """
+
+
+@app.route('/categories', methods=['POST'])
+def add_category():  # przekazywanie do repozytorium kategrii. Musimy ją wysłać w formacie JSON
+    r = request.json  # obiekt, który będzie przekazywany
+    category_name = r['name']  # z naszego żądania, które jest w formacie JSON będziemy wyciągać klucz zmiennej
+
+    return jsonify(create_category(category_name)), 201  # "category_name" to żądanie
+    # ciało odpowiedzi + kod odpowiedzi
