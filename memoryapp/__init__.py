@@ -12,3 +12,6 @@ app.debug = True  # W terminalu wyświetli się każde odpytanie, które trafia�
 ZMNIEJSZENIE RESTRYKCJI
 {"origins": "*"}} - obojętnie, z jakiego źródła będzie pochodziło zapytanie, serwer będzie przepuszczał
 """
+
+
+from . import categories
