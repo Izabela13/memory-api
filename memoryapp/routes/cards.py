@@ -17,3 +17,10 @@ def add_card(category_id):  # parametr ze ścieżki "category_id" musi znaleźć
 
     return jsonify(create_card(category_id, word, translation)), 201  # tworzymy nowy zasób, dlatego zwracamy 201
     # opakowujemy to, co nam wróciło w format JSON.
+
+
+@app.route('/categories/<int:category_id>/cards/<int:card_id>', methods=['DELETE'])
+def remove_card(category_id, card_id):
+    delete_card(category_id, card_id)  # metoda usuwająca karty
+
+    return '', 204  # Pusty string z kodem odpowiedzi
