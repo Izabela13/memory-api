@@ -1,6 +1,6 @@
 """ Plik "repository" to baza danych """
 
-from memoryapp.models import Category
+from memoryapp.models import Category, Card
 from memoryapp.exceptions import NotFoundException
 
 
@@ -11,8 +11,15 @@ categories_list = [
     Category(2, 'Rodzina')
 ]
 
+# Lista na fiszki
+cards_list = [
+    Card(1, 1, 'Drzwi', 'Door'),
+    Card(2, 1, 'Okno', 'Window')
+]
+
 # Metoda, która będzie nadawała kolejne numery id
 id_categories = 2  # tu trzymamy id
+id_cards = 2
 
 
 def get_categories():
@@ -52,3 +59,15 @@ def delete_category(category_id):
         categories_list[:] = [category for category in categories_list if category.category_id != category_id]
     else:
         raise NotFoundException('Category')
+
+
+# Metoda, która zwróci wszystkie fiszki danej kategorii
+def get_cards(category_id):
+    categories_results = [category for category in categories_list if category.category_id == category_id]
+
+    if not categories_results:
+        raise NotFoundException('Category')
+
+    cards_results = [card for card in cards_list if card.category_id == category_id]
+
+    return cards_results

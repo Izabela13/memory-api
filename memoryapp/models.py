@@ -12,3 +12,14 @@ class Category:
     name: str
 
 # W repozytorium zamieniamy obiekty w "category_list"
+
+
+# Deklarowanie pól (pola to właściwości naszej klasy)
+@dataclass_json
+@dataclass
+class Card:
+    card_id: int
+    category_id: int
+    word: str
+    translation: str
+
